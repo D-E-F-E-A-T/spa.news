@@ -6,12 +6,15 @@ import { List, Row, Col, Icon } from 'antd';
 import { Actions as ActionsItems, Types as TypesItems } from '~/stores/items';
 import Style from './index.module.scss';
 
-const State = {
-}
+const State = {};
 
 export class Component extends React.Component {
 
     state = State;
+
+    componentDidMount() {
+        this.props.dispatch(ActionsItems.fetch());
+    }
 
     render() {
         return <List
@@ -29,10 +32,12 @@ export class Component extends React.Component {
                         className={Style.ItemRow}>
                         <Col xs={4} sm={2} xl={1} className={Style.ItemCol}>
                             <div>
-                                <Icon type="like-o"/> {item.score}
+                                <Icon type="like-o"/>
+                                {item.score}
                             </div>
                             <div>
-                                <Icon type="message"/> {item.descendants}
+                                <Icon type="message"/>
+                                <a href={item.original}>{item.descendants}</a>
                             </div>
                         </Col>
                         <Col xs={20} sm={22} xl={23} className={Style.ItemCol}>

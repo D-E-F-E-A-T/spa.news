@@ -14,6 +14,15 @@
                     padding-right: 0.5em;
                 }
                 border-right: 1px solid #eee;
+
+                /* Icons */
+                & i {
+                    margin-right: 0.25em;
+                }
+
+                & a {
+                    color: inherit;
+                }
             }
 
             &:nth-of-type(2) {
