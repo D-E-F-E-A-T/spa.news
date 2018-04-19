@@ -13,7 +13,14 @@ export class Component extends React.Component {
     state = State;
 
     componentDidMount() {
+        // Obtain all the items from the store
         this.props.dispatch(ActionsItems.fetch());
+        // Listen for keys
+        document.addEventListener('keydown', this.onKey);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.onKey);
     }
 
     render() {
@@ -47,6 +54,17 @@ export class Component extends React.Component {
                 </List.Item>
             }
         />;
+    }
+
+    onKey = (e) => {
+        const { dispatch, items } = this.props;
+        const item = items[0];
+        switch (e.code) {
+            case 'Enter': return window.open(item.original, '_blank');
+            case 'KeyL': return window.open(item.url, '_blank');
+            case 'Semicolon': return dispatch(ActionsItems.hide(item));
+            default: return false;
+        }
     }
 }
 

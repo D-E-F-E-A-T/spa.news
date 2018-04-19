@@ -14,6 +14,14 @@ const hackernews = {
 
 export const { Actions, Reducers } = Factory(State, {
 
+    hide: {
+        action: (type, item) => (dispatch) => {
+            localStorage.setItem(item.id, JSON.stringify({ ...item, hidden: true }));
+            return dispatch({ type, payload: item.id });
+        },
+        reducer: (prevState, id) => prevState.filter(item => item.id !== id),
+    },
+
     fetch: {
         action: type => dispatch => fetch(`${hackernews.api}/beststories.json`)
             .then(response => response.json())
@@ -30,6 +38,7 @@ export const { Actions, Reducers } = Factory(State, {
                         .then((json) => {
                             const item = {
                                 ...json,
+                                hidden: false,
                                 original: `${hackernews.url}/item?id=${id}`,
                             };
                             localStorage.setItem(id, JSON.stringify(item));
@@ -49,6 +58,8 @@ export const { Actions, Reducers } = Factory(State, {
             .then(items => items.sort((a, b) =>
                 a.score < b.score ? 1 : (a.score > b.score ? -1 : 0),
             ))
+            // filter hidden items
+            .then(items => items.filter(item => !item.hidden))
             // Dispatch to the reducer
             .then(payload => dispatch({ type, payload })),
         reducer: (prevState, items) => items,
