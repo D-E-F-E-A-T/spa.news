@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Store, Provider } from '@gik/redux-factory';
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
 
 import { Reducers as ReducersItems } from '~/stores/items';
 import registerServiceWorker from '~/utils/registerServiceWorker';
@@ -12,7 +14,9 @@ const store = Store({
 
 ReactDOM.render(
     <Provider store={store}>
-        <Pages/>
+        <LocaleProvider locale={enUS}>
+            <Pages/>
+        </LocaleProvider>
     </Provider>,
     document.getElementsByTagName('main')[0],
 );

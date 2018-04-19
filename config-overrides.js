@@ -6,9 +6,9 @@ module.exports = function override(config, env) {
 
     // Only load Components that are actually being used.
     config = RewireInject(['import', {
-        style: true, // Use less instad of css
         libraryName: 'antd',
         libraryDirectory: 'es',
+        style: 'css',
     }], config);
 
     // treat "~" as an alias for the src folder (root imports)
