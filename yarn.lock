@@ -104,9 +104,9 @@
     eslint-plugin-import "^2.8.0"
     eslint-plugin-jsdoc "^3.2.0"
 
-"@gik/redux-factory@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@gik/redux-factory/-/redux-factory-0.0.2.tgz#7252a4ff85624a6555ac8108aecaf588565fec56"
+"@gik/redux-factory@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@gik/redux-factory/-/redux-factory-0.0.3.tgz#0583e55d346d96ae56e79956b3462bdff8dd23e2"
   dependencies:
     prop-types "^15.6.1"
     react-redux "^5.0.7"
